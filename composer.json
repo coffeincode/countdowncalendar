@@ -16,7 +16,7 @@
     },
     "autoload": {
         "psr-4": {
-            "CoffeinCode\\CountdownCalendar\\": "src/"
+            "CoffeinCode\\CountdownCalendarBundle\\": "src/"
         },
  	"classmap": [
             "src/Resources/contao/"
@@ -30,7 +30,7 @@
     },
     "extra": {
         
-	"contao-manager-plugin": "CoffeinCode\\CountdownCalendar\\ContaoManager\\Plugin"	
+	"contao-manager-plugin": "CoffeinCode\\CountdownCalendarBundle\\ContaoManager\\Plugin"	
     }
 }
 
