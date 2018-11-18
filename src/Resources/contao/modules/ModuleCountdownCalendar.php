@@ -42,7 +42,7 @@ class ModuleCountdownCalendar extends ModuleCountdownDoor
 			$objTemplate->id = $this->id;
 			$objTemplate->link = $this->name;
 			$objTemplate->href = 'contao/main.php?do=themes&amp;table=tl_module&amp;act=edit&amp;id=' . $this->id;
-                        if (!isset($_GET['item']) && Config::get('useAutoItem') && isset($_GET['auto_item'])) {
+                        if (!isset($_GET['item']) && \Contao\Config::get('useAutoItem') && isset($_GET['auto_item'])) {
  
                              Input::setGet('item', Input::get('auto_item'));
  

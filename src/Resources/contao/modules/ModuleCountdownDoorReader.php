@@ -26,27 +26,7 @@ class ModuleCountdownDoorReader extends ModuleCountdownDoor{
 	
         protected $objFiles;
         protected $strTemplate = 'mod_ac_door_reader';
-	/**
-	 * Template
-	 * @var string
-	 */
-	//protected $strTemplate = 'mod_caroufredsel';
-
-
-	/**
-	 * CSS Template
-	 * @var string
-	 */
-	//protected $strTemplateCss = 'css_caroufredsel';
-
-
-	/**
-	 * JS Template
-	 * @var string
-	 */
-	//protected $strTemplateJs = 'js_caroufredsel';
-
-
+	
 	/**
 	 * Display a wildcard in the back end
 	 *
