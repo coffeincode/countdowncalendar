@@ -10,7 +10,7 @@
  * @copyright Coffeincode 2018
  */
 
-namespace CoffeinCode\CountdownCalendar\ContaoManager;
+namespace CoffeinCode\CountdownCalendarBundle\ContaoManager;
 
 use Contao\ManagerPlugin\Bundle\Config\BundleConfig;
 use Contao\ManagerPlugin\Bundle\BundlePluginInterface;
@@ -34,7 +34,7 @@ class Plugin implements BundlePluginInterface, RoutingPluginInterface
     public function getBundles(ParserInterface $parser)
     {
         return [
-            BundleConfig::create('CoffeinCode\CountdownCalendar\CoffeinCodeCountdownCalendar')
+            BundleConfig::create('CoffeinCode\CountdownCalendarBundle\CoffeinCodeCountdownCalendarBundle')
                 ->setLoadAfter(['Contao\CoreBundle\ContaoCoreBundle'])
         ];
     }
