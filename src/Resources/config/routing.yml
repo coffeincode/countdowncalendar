@@ -1,0 +1,3 @@
+# meine_route: 
+#    resource: "@CoffeinCodeCountdownCalendar/Controller"
+#    type: annotation
