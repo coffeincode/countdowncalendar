@@ -17,6 +17,9 @@
         </div>
     </div>
 </div>
+<div id="cdc_secrets">
+    <?php echo $this->secretsList;?>
+</div>
 <script type="text/javascript">
     var popups = document.getElementsByClassName("secret");
 var overlay = document.getElementById("popup_overlay");

@@ -96,26 +96,52 @@ abstract class ModuleCountdownDoor extends \Module
       * @param type $intTemplate
       * @return string
       */    
-     protected function parseAllDoors ( $strTimestamp, $objReaderPage, $intTemplate, $arrDoors=null){    
+     protected function parseAllDoors ( $strTimestamp, $intTemplate, $arrDoors=null){    
         // $objTemplate = new \FrontendTemplate($this->ac_details_template);
          //$objTemplate =new \FrontendTemplate();
          if ($arrDoors === null){return null;}
          else {//das Array ist schonmal nicht leer
              $arrHelperDoors='';
+             
+             //zuerst die türen         
+             while ($arrDoors->next()){
+                 $arrHelperDoors .= $this->parseDoor($arrDoors,$strTimestamp, $intTemplate );
+                 
+             }
+                          
+             return $arrHelperDoors;
+         }
+     }   
+        
+     /**
+     * Erstellt den Link zur Detailseite.
+     * 
+      * 
+      * @param type $arrMA
+      * @param type $objReaderPage
+      * @param type $intTemplate
+      * @return string
+      */    
+     protected function parseAllSecrets( $strTimestamp, $objReaderPage, $intTemplate, $arrDoors=null){    
+        // $objTemplate = new \FrontendTemplate($this->ac_details_template);
+         //$objTemplate =new \FrontendTemplate();
+         if ($arrDoors === null){return null;}
+         else {//das Array ist schonmal nicht leer
+          
              $arrHelperSecrets='';
             
              //zuerst die türen         
              while ($arrDoors->next()){
-                 $arrHelperDoors .= $this->parseDoor($arrDoors,$strTimestamp, $intTemplate );
-                 $arrHelperSecrets.= $this->parseDoor($arrDoors,$strTimestamp, 'default_secret',$objReaderPage);
+               $arrHelperSecrets.= $this->parseDoor($arrDoors,$strTimestamp, 'default_secret',$objReaderPage);
              }
-             //dann die secrets
-             $arrHelper=$arrHelperDoors.''.$arrHelperSecrets;
-           
              
-             return $arrHelper;
+             return $arrHelperSecrets;
          }
      }   
+     
+     
+      
+       
         /**
      * Erstellt den Link zur Detailseite.
      * @param $intId

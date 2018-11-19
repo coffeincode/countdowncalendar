@@ -81,25 +81,28 @@ class ModuleCountdownCalendar extends ModuleCountdownDoor
             $this->Template->debug= $arrObjCalendar->acDebug;
             $debug=$arrObjCalendar->acDebug;
             $this->ac_jumpTo = $arrObjCalendar->jumpTo;
-            //if($debug)      \Contao\System::log("compile für module Countdowncalendar aufgerufen, acJumpto lautet: ".$arrObjCalendar->jumpTo, __METHOD__, TL_GENERAL);
+           
             $this->Template->message=NULL;
             //parse all doors:
-            $arrObjCalendar->acDebug?$parsingDate=$arrObjCalendar->acDebugDate:$parsingDate=time();
-             //if($debug)     \Contao\System::log("Parsingdate lautet: ".$parsingDate, __METHOD__, TL_GENERAL);
+
+            $arrObjCalendar->acDebug?$parsingDate=$arrObjCalendar->acDebugDate:$parsingDate=time();     
+            $acDoorList = $this->parseAllDoors($parsingDate,$this->ac_details_template, $arrObj); 
+            //reset ponter 
+            $arrObj->first()->prev();
+               
+            //parse all secrets:
+            $arrSecretsList = $this->parseAllSecrets(parsingDate,$this->ac_jumpTo,'default_secret', $arrObj);
                 
-            
-            $acDoorList = $this->parseAllDoors($parsingDate,$this->ac_jumpTo,$this->ac_details_template, $arrObj); 
            
             if ($acDoorList){
                  $this->Template->doorsList = $acDoorList;
+                 $this->Template->secretsList = $arrSecretsList;
              }
              else {
                  //keine Tür verfügbar - leeren Kalender anzeigen 
-                   $this->Template->doorsList = NULL;
-                 
+                   $this->Template->doorsList = $this->Template->secretsList = NULL;
                    $this->Template->message = $GLOBALS['TL_LANG']['MSC']['ac_calendar_empty'];
-                                
-                 
+
              }
              
             //compile and prepare calendar:
