@@ -137,12 +137,12 @@ $GLOBALS['TL_DCA'][$strTable] = array
 		(
 			'sql'                     => "int(10) unsigned NOT NULL default '0'"
 		),
-	    //todo: ist das jetzt nötig oder nicht?! 
-	   'door_index' => array //todo: den Index aus dem Datum erzeugen
+
+	   'door_index' => array 
 	    (
 	        'label'                   => &$GLOBALS['TL_LANG']['tl_countdown_door']['door_index'],
 	        'exclude'                 => true,
-	        'inputType'               => 'text', //Todo darf das Text bleiben?
+	        'inputType'               => 'text', 
 	        'eval'                    => array('mandatory'=>true, 'maxlength'=>255, 'tl_class'=>'w50'),
 	        'sql'                     => "int(10) unsigned NOT NULL default '0'"
 	    ),
@@ -255,10 +255,7 @@ class tl_countdown_door extends Backend{
 	 * 
 	 */
 	public function calcIndex($varDateValue, DataContainer $dc){
-	    // todo: take the actual activeStart and subtract the calendar's start-date, divide by 86400 and this +1 is the index. 
-	    // needs to be called everytime the date is changed. 
-	   // $objVersions = new \Versions('tl_countdown_door', $dc->activeRecord->id);
-	   // $objVersions->initialize();
+	   
 	    if ($varDateValue != $dc->activeRecord->activeStart){
 	        $calendarStart = $this->Database->prepare("SELECT calendar_start FROM tl_countdowncalendar WHERE id=?")->execute($dc->activeRecord->pid)->fetchAssoc();
                 if (version_compare(phpversion(), '7.0.0') >= 0) {
@@ -271,8 +268,8 @@ class tl_countdown_door extends Backend{
                 
                 }
                 if ($offset<=0) return false;
-                System::log("Das offset ist d: ".$offset." tage ", __METHOD__, TL_GENERAL);
-                System::log("Die timestamps lauten vardatevalue: ".$varDateValue.", calendarStart: ".$calendarStart['calendar_start'], __METHOD__, TL_GENERAL);
+               // System::log("Das offset ist d: ".$offset." tage ", __METHOD__, TL_GENERAL);
+               // System::log("Die timestamps lauten vardatevalue: ".$varDateValue.", calendarStart: ".$calendarStart['calendar_start'], __METHOD__, TL_GENERAL);
 	        $this->Database->prepare("UPDATE tl_countdown_door SET door_index=".$offset." WHERE id=?")->execute($dc->activeRecord->id);
 	    }
 	    return $varDateValue;

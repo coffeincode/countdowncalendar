@@ -1,24 +1,23 @@
-
+<h1>Hallo hier der Kalender!!</h1>
 <div class="<?php echo $this->class ?> block"<?php echo $this->cssID ?><?php if ($this->style): ?> style="<?= $this->style ?>"<?php endif; ?>>
    
     <?php if ($this->title): ?> <h2>
         <?php echo $this->title;?></h2><?php endif;?>
     <?php if ($this->debug):?>  <H1> Achtung, debug-modus ist eingeschaltet!!</h1><?php endif;?>
+
     <div class="ac_container">
          <div id="popup_overlay" class="hidden"></div> 
         <div class="ac_background">
             <?php $this->insert('picture_default', $this->picture); ?>
         </div>
         <div id="adventcalendar" class="ac_doors"style="position:absolute;top:0;display:flex;flex-wrap:wrap;">
-            <?php if ($this->adventdoors): ?> <?php echo $this->doorsList; ?>
-            <?php elseif ($this->debug):?> 
-                <?php echo $this->doorsList; ?>
-            <?php else :?>  <?php echo "Es ist zu früh, der Kalender geht erst später online! "; ?> <br>    
+          <?php echo $this->doorsList; ?>
+            
+    
         </div>
     </div>
-    
-<?php endif; ?>
 </div>
+<h1>Hallo hier der Kalender am Ende!!</h1>
 <script type="text/javascript">
 var popups = document.getElementsByClassName("secret");
 var overlay = document.getElementById("popup_overlay");

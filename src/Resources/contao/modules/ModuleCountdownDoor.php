@@ -40,8 +40,8 @@ abstract class ModuleCountdownDoor extends \Module
          */  
         protected function parseDoor ($objDoor, $strTimestamp, $strTemplate, $objReaderPage=null ){
             $objTemplate = new \FrontendTemplate($strTemplate);
-	    $objTemplate->setData($objDoor->row());
-	    $objTemplate->locked = true; //check this! A door is locked if the actual date of parsing is smaller than the active-timestamp of the door to be parsed. 
+            $objTemplate->setData($objDoor->row());
+            $objTemplate->locked = true; //check this! A door is locked if the actual date of parsing is smaller than the active-timestamp of the door to be parsed. 
             $objTemplate->class = (($objDoor->cssClass != '') ? ' ' . $objDoor->cssClass : '') . $strClass;
             $objDoor->activeStart <= $strTimestamp ? $objTemplate->locked=false:$objTemplate->locked=true;
             
@@ -58,7 +58,8 @@ abstract class ModuleCountdownDoor extends \Module
             }
             
             $id = $objDoor->id;
-  
+            $objTemplate->door_index=$objDoor->door_index;
+            
             // generate anonymous functions for the text/content-elements which is only called in case the template parsed asks for it, see ModuleNews.php 
             $objTemplate->doorText = function () use ($id)
             {  
@@ -95,13 +96,14 @@ abstract class ModuleCountdownDoor extends \Module
       * @param type $intTemplate
       * @return string
       */    
-     protected function parseAllDoors ($arrDoors=null, $strTimestamp, $objReaderPage, $intTemplate){    
-         $objTemplate = new \FrontendTemplate($this->ac_details_template);
+     protected function parseAllDoors ( $strTimestamp, $objReaderPage, $intTemplate, $arrDoors=null){    
+        // $objTemplate = new \FrontendTemplate($this->ac_details_template);
+         //$objTemplate =new \FrontendTemplate();
          if ($arrDoors === null){return null;}
          else {//das Array ist schonmal nicht leer
              $arrHelperDoors='';
              $arrHelperSecrets='';
-             
+            
              //zuerst die türen         
              while ($arrDoors->next()){
                  $arrHelperDoors .= $this->parseDoor($arrDoors,$strTimestamp, $intTemplate );
@@ -109,6 +111,7 @@ abstract class ModuleCountdownDoor extends \Module
              }
              //dann die secrets
              $arrHelper=$arrHelperDoors.''.$arrHelperSecrets;
+           
              
              return $arrHelper;
          }

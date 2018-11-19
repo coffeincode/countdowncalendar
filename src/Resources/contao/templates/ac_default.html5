@@ -1,3 +1,4 @@
+<h2> H ?>ier ac_default!</h2>
 <div class="<?php echo $this->class ?> ac_daywrapper block"<?php echo $this->cssID ?><?php if ($this->style): ?> style="<?= $this->style ?>"<?php endif; ?>>
    <div id="day-<?php echo $this->door_index?>" class="day <?php if (! $this->locked) {echo("active");}?> ac_door_index-even">
       
@@ -10,8 +11,6 @@
 		Klick! 
             </div>	
 	<?php endif;?>
-    </div>
-    
-    
-    
+    </div>    
 </div>
+<h2> Hier ac_default ENDE!</h2>

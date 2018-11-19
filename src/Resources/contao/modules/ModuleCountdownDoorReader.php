@@ -16,6 +16,8 @@
  */
 namespace CoffeinCode\CountdownCalendar;
 use CoffeinCode\CountdownCalendar\ModuleCountdownDoor;
+use CoffeinCode\CountdownCalendar\CountdownCalendarModel;
+use CoffeinCode\CountdownCalendar\CountdownDoorModel;
 
 
 class ModuleCountdownDoorReader extends ModuleCountdownDoor{
@@ -65,7 +67,7 @@ class ModuleCountdownDoorReader extends ModuleCountdownDoor{
 	protected function compile()
 	{    
             // hmmmmm... muss hier nicht \CountdownDoorModel::findByIdOrAlias aufgerufen werden?
-            $objCalendarDoor = \CountdownDoorModel::findByIdOrAlias(\Input::get('auto_item'));
+            $objCalendarDoor = CountdownDoorModel::findByIdOrAlias(\Input::get('auto_item'));
             if (\Contao\Input::get('debug')) {
                 $objCalendar = CountdownCalendarModel::findByIdOrAlias($objCalendarDoor->pid);
                 $arrCalendarDoor = $this->parseDoor($objCalendarDoor,$objCalendar->acDebugDate, 'ac_full');   
