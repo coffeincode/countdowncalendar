@@ -1,4 +1,4 @@
-<h1>Hallo hier der Kalender!!</h1>
+
 <div class="<?php echo $this->class ?> block"<?php echo $this->cssID ?><?php if ($this->style): ?> style="<?= $this->style ?>"<?php endif; ?>>
    
     <?php if ($this->title): ?> <h2>
@@ -17,9 +17,8 @@
         </div>
     </div>
 </div>
-<h1>Hallo hier der Kalender am Ende!!</h1>
 <script type="text/javascript">
-var popups = document.getElementsByClassName("secret");
+    var popups = document.getElementsByClassName("secret");
 var overlay = document.getElementById("popup_overlay");
 for (var i=0; i<popups.length; i++){
 	popups[i].addEventListener("click",showSecret,false);

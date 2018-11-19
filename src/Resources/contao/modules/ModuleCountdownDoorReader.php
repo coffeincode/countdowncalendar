@@ -66,19 +66,23 @@ class ModuleCountdownDoorReader extends ModuleCountdownDoor{
         //todo: HIER muss die richtige funktion aufgerufen werden, die dann die Content-Elements der Tür parst!
 	protected function compile()
 	{    
-            // hmmmmm... muss hier nicht \CountdownDoorModel::findByIdOrAlias aufgerufen werden?
             $objCalendarDoor = CountdownDoorModel::findByIdOrAlias(\Input::get('auto_item'));
-            if (\Contao\Input::get('debug')) {
-                $objCalendar = CountdownCalendarModel::findByIdOrAlias($objCalendarDoor->pid);
-                $arrCalendarDoor = $this->parseDoor($objCalendarDoor,$objCalendar->acDebugDate, 'ac_full');   
+            if ($objCalendarDoor){
+                if (\Contao\Input::get('debug')) {
+                    $objCalendar = CountdownCalendarModel::findByIdOrAlias($objCalendarDoor->pid);
+                    $arrCalendarDoor = $this->parseDoor($objCalendarDoor,$objCalendar->acDebugDate, 'ac_full');   
+                }
+                else $arrCalendarDoor = $this->parseDoor($objCalendarDoor,time(), 'ac_full');    
+                //$arrMitarbeiter = $this->parseMA($objMitarbeiter, 'ma_default');
+
+                $this->Template->acDetails = $arrCalendarDoor;
+                $this->Template->referer = 'javascript:history.go(-1)';
+                $this->Template->back = $GLOBALS['TL_LANG']['MSC']['goBack'];
             }
-            else $arrCalendarDoor = $this->parseDoor($objCalendarDoor,time(), 'ac_full');    
-            //$arrMitarbeiter = $this->parseMA($objMitarbeiter, 'ma_default');
-            
-            $this->Template->acDetails = $arrCalendarDoor;
-            $this->Template->referer = 'javascript:history.go(-1)';
-            $this->Template->back = $GLOBALS['TL_LANG']['MSC']['goBack'];
-         
+            else {//door not found -> show 404
+                $objHandler = new $GLOBALS['TL_PTY']['error_404']();
+                $objHandler->generate($objPage->id);
+            }
 
      
          }

@@ -132,12 +132,8 @@ abstract class ModuleCountdownDoor extends \Module
         $objPage = \Contao\PageModel::findByPk($intId);
  
         if ($objPage) {
-            if(\Config::get('rewriteURL') && \Config::get('useAutoItem')&& !\Config::get('disableAutoAlias')){
+          
                 return $objPage->alias .'/';
-            }
-            else {    
-                return '/index.php/'.$objPage->alias .'/';
-            }
         }
  
         return '';

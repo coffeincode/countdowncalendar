@@ -124,10 +124,10 @@ class ModuleCountdownCalendar extends ModuleCountdownDoor
 		}
                 
                 //todo: add javascript
-               // $GLOBALS['TL_JAVASCRIPT'][]='/system/modules/countdowncalendar/assets/ac_script.js';
+               // $GLOBALS['TL_JAVASCRIPT'][]='/bundles/coffeincodecountdowncalendar/ac_script.js|static';
                         
                 //todo: add css
-                //  $GLOBALS['TL_CSS'][]='/system/modules/countdowncalendar/assets/styles.css';
+                $GLOBALS['TL_CSS'][]='/bundles/coffeincodecountdowncalendar/styles.css|static';
            
 	}
  
