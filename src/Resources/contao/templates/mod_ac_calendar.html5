@@ -7,12 +7,15 @@
 
     <div class="ac_container">
          <div id="popup_overlay" class="hidden"></div> 
-        <div class="ac_background">
-            <?php $this->insert('picture_default', $this->picture); ?>
+         <div class="ac_background">
+            <div class="cdc_img_overlay block"></div>
+             <?php $this->insert('picture_default', $this->picture); ?>
+            
         </div>
         <div id="adventcalendar" class="ac_doors"style="position:absolute;top:0;display:flex;flex-wrap:wrap;">
+            <div class="ac_doors_inner_wrapper">
           <?php echo $this->doorsList; ?>
-            
+        </div>
     
         </div>
     </div>
@@ -25,7 +28,6 @@ var popups = document.getElementsByClassName("secret");
 var overlay = document.getElementById("popup_overlay");
 for (var i=0; i<popups.length; i++){
 	popups[i].addEventListener("click",showSecret,false);
-        console.log("popups werden gezählt");
 }
 
 function showSecret(e) {
@@ -37,14 +39,7 @@ function showSecret(e) {
 }
 
 function closePopup(e){
-
-	console.log("Hallo Close!");
-        console.log(e.target);
-        console.log("--------------------");
-        console.log(e.target.parentElement.dataset.daycount);
-
-        e.target.parentElement.classList.toggle("hidden");
+        e.target.parentElement.parentElement.classList.toggle("hidden");
         overlay.classList.toggle("hidden");
-	
 }
 </script>
