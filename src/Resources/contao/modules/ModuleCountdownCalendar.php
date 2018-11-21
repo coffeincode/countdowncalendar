@@ -66,13 +66,15 @@ class ModuleCountdownCalendar extends ModuleCountdownDoor
          * 
 	 */
 	protected function compile()
-	{ 
-
+	{   
+            
+            
             $t = $this->strChildTable;    
             $arrColumns = array("$t.pid", "$t.published");
             $arrValues = array("$this->ac_calendar", "1");
             $options = array('order'=>'sorting');
             $arrObj= CountdownDoorModel::findBy($arrColumns, $arrValues, $options);
+            $arrObjSecrets= CountdownDoorModel::findBy($arrColumns, $arrValues, $options);
             $this->strDetTemplate = $this->ac_details_template;
             $this->strModTemplate = $this->ac_template;
             
@@ -81,17 +83,15 @@ class ModuleCountdownCalendar extends ModuleCountdownDoor
             $this->Template->debug= $arrObjCalendar->acDebug;
             $debug=$arrObjCalendar->acDebug;
             $this->ac_jumpTo = $arrObjCalendar->jumpTo;
-           
+           $this->Template->setData($arrObjCalendar->row());
             $this->Template->message=NULL;
-            //parse all doors:
+            //parse all doors:$this->Template->setData();
 
             $arrObjCalendar->acDebug?$parsingDate=$arrObjCalendar->acDebugDate:$parsingDate=time();     
-            $acDoorList = $this->parseAllDoors($parsingDate,$this->ac_details_template, $arrObj); 
-            //reset ponter 
-            $arrObj->first()->prev();
-               
+            $acDoorList = $this->parseAllDoors($parsingDate,$this->ac_details_template, $arrObjSecrets); 
+           
             //parse all secrets:
-            $arrSecretsList = $this->parseAllSecrets(parsingDate,$this->ac_jumpTo,'default_secret', $arrObj);
+            $arrSecretsList = $this->parseAllSecrets($parsingDate,$this->ac_jumpTo,'default_secret', $arrObj);
                 
            
             if ($acDoorList){
@@ -125,6 +125,10 @@ class ModuleCountdownCalendar extends ModuleCountdownDoor
 				$this->addImageToTemplate($this->Template, $arrCal);        
 			}
 		}
+                
+                //todo: deserialize colors and dump them to the global css
+                //todo: catch empty calendars
+                
                 
                 //todo: add javascript
                // $GLOBALS['TL_JAVASCRIPT'][]='/bundles/coffeincodecountdowncalendar/ac_script.js|static';

@@ -47,13 +47,14 @@ abstract class ModuleCountdownDoor extends \Module
             
             if($objReaderPage){
                 if(! $objTemplate->locked){
-                    
-                    $strLink= $this->makeLink($objReaderPage) . $objDoor->alias .'.html'; //@Todo': Variable für Erweiterung herausfinden! Steht in den Einstellungen oder in global objpage?! 
+                    //todo:
+                    $strLink= $this->makeLink($objReaderPage) . $objDoor->alias .'.html'; 
                     $objTemplate->link =$strLink;
                     $objTemplate->readerID = $objReaderPage->id;             
                 }
                 else {
                     $objTemplate->link ="#";
+                    $objTemplate->teaser="";
                 }
             }
             
@@ -87,15 +88,7 @@ abstract class ModuleCountdownDoor extends \Module
             return $objTemplate->parse($objDoor);
         }
      
-     /**
-     * Erstellt den Link zur Detailseite.
-     * 
-      * 
-      * @param type $arrMA
-      * @param type $objReaderPage
-      * @param type $intTemplate
-      * @return string
-      */    
+      
      protected function parseAllDoors ( $strTimestamp, $intTemplate, $arrDoors=null){    
         // $objTemplate = new \FrontendTemplate($this->ac_details_template);
          //$objTemplate =new \FrontendTemplate();

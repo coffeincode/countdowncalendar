@@ -20,6 +20,7 @@
         </div>
     </div>
 </div>
+<h1>Farbe des Overlays: <?php $help=deserialize($this->overlayColor);echo $help[0]?></h1>
 <div id="cdc_secrets">
     <?php echo $this->secretsList;?>
 </div>

@@ -109,7 +109,7 @@ $GLOBALS['TL_DCA'][$strTable] = array
 	'palettes' => array //Dies sind die Paletten die bei editheader kommen sollen
 	(
 		'__selector__'                => array('published'),
-        'default'                     => '{door_legend},door_index,alias,activeStart,activeStop,door_title,door_subtitle,teaser,{publishing_legend}, published;{expert_legend},cssClass '
+        'default'                     => '{door_legend},door_index,alias,activeStart,door_title,door_subtitle,teaser,{publishing_legend}, published;{expert_legend},cssClass '
             
 	),
         'subpalettes' => array
@@ -151,7 +151,7 @@ $GLOBALS['TL_DCA'][$strTable] = array
 			'label'                   => &$GLOBALS['TL_LANG']['tl_countdown_door']['door_title'],
 			'exclude'                 => true,
 			'inputType'               => 'text',
-			'eval'                    => array('mandatory'=>true, 'maxlength'=>255, 'submitOnChange'=>true,'tl_class'=>'w50'),
+			'eval'                    => array('mandatory'=>true, 'maxlength'=>255, 'submitOnChange'=>true,'tl_class'=>'w50 clr'),
 			'sql'                     => "varchar(255) NOT NULL default ''"
         ),
         'door_subtitle' => array
@@ -206,7 +206,7 @@ $GLOBALS['TL_DCA'][$strTable] = array
             'label'                   => &$GLOBALS['TL_LANG']['tl_countdown_door']['activeStart'],
             'exclude'                 => true,
             'inputType'               => 'text',
-            'eval'                    => array('rgxp'=>'datim', 'datepicker'=>true, 'submitOnChange'=>true,'tl_class'=>'w50 wizard'),
+            'eval'                    => array('rgxp'=>'date', 'submitOnChange'=>true,'datepicker'=>true, 'tl_class'=>'w50 clr wizard'),
             'save_callback'           => array (array($strTable, 'calcIndex')),
             'sql'                     => "varchar(10) NOT NULL default ''" 
             
