@@ -121,9 +121,9 @@ div.popup .inner {
     
         
     margin: 2% auto;
-    top: 2em;
+    top: 10vh;
     
-  position: absolute;
+  position: relative;
  
   padding: 2em;
   
@@ -158,13 +158,6 @@ span.close_me {
     font-size: 1em;
     font-weight: bold;
 }
-
-
-
-
-
-
-
 
 
 div#popup_overlay{

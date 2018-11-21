@@ -106,7 +106,7 @@ class ModuleCountdownCalendar extends ModuleCountdownDoor
              }
              
             //compile and prepare calendar:
-             if ($arrObjCalendar->addImage && $arrObjCalendar->singleSRC != '')
+             if ($arrObjCalendar->singleSRC != '')
 		{
                         $arrCal = $arrObjCalendar->row();
 			$objImgModel = \FilesModel::findByUuid($arrObjCalendar->singleSRC);
