@@ -1,4 +1,3 @@
-
 <div class="<?php echo $this->class ?> ac_daywrapper block"<?php echo $this->cssID ?><?php if ($this->style): ?> style="<?= $this->style ?>"<?php endif; ?>>
    <div id="day-<?php echo $this->door_index?>" class="day <?php if (! $this->locked) {echo("active");}?> ">
       

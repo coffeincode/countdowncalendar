@@ -23,9 +23,8 @@ abstract class ModuleCountdownDoor extends \Module
 	/**
 	 * Template
 	 * @var string
-         * WICHTIG! wenn das nicht festgelegt wird, findet er nicht das richtige Template und nix wird angezeigt! 
 	 */
-	protected $strAcCeTemplate;// = 'ma_default';
+	protected $strAcCeTemplate;
         protected $idReaderPage;
         
         /**
@@ -106,18 +105,9 @@ abstract class ModuleCountdownDoor extends \Module
          }
      }   
         
-     /**
-     * Erstellt den Link zur Detailseite.
-     * 
-      * 
-      * @param type $arrMA
-      * @param type $objReaderPage
-      * @param type $intTemplate
-      * @return string
-      */    
+   
      protected function parseAllSecrets( $strTimestamp, $objReaderPage, $intTemplate, $arrDoors=null){    
-        // $objTemplate = new \FrontendTemplate($this->ac_details_template);
-         //$objTemplate =new \FrontendTemplate();
+        
          if ($arrDoors === null){return null;}
          else {//das Array ist schonmal nicht leer
           

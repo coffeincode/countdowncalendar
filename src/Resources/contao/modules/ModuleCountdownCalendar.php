@@ -25,7 +25,6 @@ class ModuleCountdownCalendar extends ModuleCountdownDoor
 	/**
 	 * Template
 	 * @var string
-         * WICHTIG! wenn das nicht festgelegt wird, findet er nicht das richtige Template und nix wird angezeigt! 
 	 */
         protected $strChildTable = "tl_countdown_door";
 	protected $strTemplate = 'mod_ac_calendar'; 
