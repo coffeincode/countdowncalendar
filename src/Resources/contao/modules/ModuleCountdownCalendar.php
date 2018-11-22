@@ -82,9 +82,9 @@ class ModuleCountdownCalendar extends ModuleCountdownDoor
             $this->Template->debug= $arrObjCalendar->acDebug;
             $debug=$arrObjCalendar->acDebug;
             $this->ac_jumpTo = $arrObjCalendar->jumpTo;
-           $this->Template->setData($arrObjCalendar->row());
+            $this->Template->setData($arrObjCalendar->row());
             $this->Template->message=NULL;
-            //parse all doors:$this->Template->setData();
+            
 
             $arrObjCalendar->acDebug?$parsingDate=$arrObjCalendar->acDebugDate:$parsingDate=time();     
             $acDoorList = $this->parseAllDoors($parsingDate,$this->ac_details_template, $arrObjSecrets); 
@@ -133,8 +133,12 @@ class ModuleCountdownCalendar extends ModuleCountdownDoor
                // $GLOBALS['TL_JAVASCRIPT'][]='/bundles/coffeincodecountdowncalendar/ac_script.js|static';
                         
                 //todo: add css
-                $GLOBALS['TL_CSS'][]='/bundles/coffeincodecountdowncalendar/styles.css|static';
+               // $GLOBALS['TL_CSS'][]='/bundles/coffeincodecountdowncalendar/styles.css|static';
+           $sassVars="$cc_doorBgColor: #000";//". deserialize($this->Template->doorBgColor)[1].";";
+           $GLOBALS['TL_HEAD'][]= '<style type="text/css">'.$sassVars.'</style>';
+           //$GLOBALS['TL_HEAD'][] =. implode($GLOBALS['T4C_CSS']) . '</style>';
            
+                $GLOBALS['TL_CSS'][]='/bundles/coffeincodecountdowncalendar/sass-styles.scss';
 	}
  
 }
