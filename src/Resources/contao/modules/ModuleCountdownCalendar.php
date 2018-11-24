@@ -48,8 +48,8 @@ class ModuleCountdownCalendar extends ModuleCountdownDoor
  
                         }
                           
-                        $this->strDetTemplate = $this->ac_details_template;//kommt aus tl_module.php dca 
-                        $this->strTemplate = $this->ac_template; //kommt aus tl_module.php dca 
+                        $this->strDetTemplate = $this->ac_details_template;
+                        $this->strTemplate = $this->ac_template; 
 			return $objTemplate->parse();
 		}
                 

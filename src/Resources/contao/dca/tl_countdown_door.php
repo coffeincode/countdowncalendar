@@ -65,10 +65,10 @@ $GLOBALS['TL_DCA'][$strTable] = array
 		'edit' => array
 		(
                     'label'               => &$GLOBALS['TL_LANG']['tl_countdown_door']['edit'],
-                    'href'                => 'table=tl_content', // angelehnt an codefog, war im tl_mitarbeiter mal: => 'act=edit',
+                    'href'                => 'table=tl_content', 
                     'icon'                => 'edit.gif'
 		),
-		'editheader' => array //das ist hier neu
+		'editheader' => array 
 		(
 		        'label'               => &$GLOBALS['TL_LANG']['tl_countdown_door']['editheader'],
 		        'href'                => 'act=edit',
@@ -106,7 +106,7 @@ $GLOBALS['TL_DCA'][$strTable] = array
 	),
 
 	// Palettes
-	'palettes' => array //Dies sind die Paletten die bei editheader kommen sollen
+	'palettes' => array 
 	(
 		'__selector__'                => array('published'),
         'default'                     => '{door_legend},door_index,alias,activeStart,door_title,door_subtitle,teaser,{publishing_legend}, published;{expert_legend},cssClass '
@@ -123,7 +123,7 @@ $GLOBALS['TL_DCA'][$strTable] = array
 		(
 			'sql'                     => "int(10) unsigned NOT NULL auto_increment"
 		),
-        'pid' => array  //TODO in codefogs code ist nur noch sql, aber keine foreign-key oder relation definieriert... warum?
+        'pid' => array  
 		(
 			'foreignKey'              => 'tl_countdowncalendar.id',
 			'sql'                     => "int(10) unsigned NOT NULL default '0'",
@@ -143,7 +143,7 @@ $GLOBALS['TL_DCA'][$strTable] = array
 	        'label'                   => &$GLOBALS['TL_LANG']['tl_countdown_door']['door_index'],
 	        'exclude'                 => true,
 	        'inputType'               => 'text', 
-	        'eval'                    => array('mandatory'=>true, 'maxlength'=>255, 'tl_class'=>'w50'),
+                'eval'                    => array('mandatory'=>true, 'disabled'=>true,   'doNotCopy'=>true, 'maxlength'=>255, 'tl_class'=>'w50'),
 	        'sql'                     => "int(10) unsigned NOT NULL default '0'"
 	    ),
 	    'door_title' => array
@@ -250,32 +250,7 @@ class tl_countdown_door extends Backend{
 	    return false;
 	}
 		
-	
-	/*
-	 * 
-	 */
-	public function calcIndex($varDateValue, DataContainer $dc){
-	   
-	    if ($varDateValue != $dc->activeRecord->activeStart){
-	        $calendarStart = $this->Database->prepare("SELECT calendar_start FROM tl_countdowncalendar WHERE id=?")->execute($dc->activeRecord->pid)->fetchAssoc();
-                if (version_compare(phpversion(), '7.0.0') >= 0) {
-                    $offset = intdiv($varDateValue-$calendarStart['calendar_start'], 86400)+1;
-                    System::log("PHP größer als oder gleich  7!",__METHOD__, TL_ERROR);
-                }
-                else {
-                    System::log("PHP kleiner als 7!",__METHOD__, TL_ERROR);
-                    $offset = floor(($varDateValue-$calendarStart['calendar_start'])/ 86400)+1;
-                
-                }
-                if ($offset<=0) return false;
-               // System::log("Das offset ist d: ".$offset." tage ", __METHOD__, TL_GENERAL);
-               // System::log("Die timestamps lauten vardatevalue: ".$varDateValue.", calendarStart: ".$calendarStart['calendar_start'], __METHOD__, TL_GENERAL);
-	        $this->Database->prepare("UPDATE tl_countdown_door SET door_index=".$offset." WHERE id=?")->execute($dc->activeRecord->id);
-	    }
-	    return $varDateValue;
-	    
-	}
-	
+
     /**
 	 * Return the "toggle visibility" button
 	 * @param array
@@ -356,8 +331,7 @@ class tl_countdown_door extends Backend{
 		{
 			throw new Exception(sprintf($GLOBALS['TL_LANG']['ERR']['aliasExists'], $varValue));
 		}
-
-		// Add ID to alias
+		
 		if ($objAlias->numRows && $autoAlias)
 		{
 			$varValue .= '-' . $dc->id;
@@ -365,7 +339,56 @@ class tl_countdown_door extends Backend{
 
 		return $varValue;
 	}
-        
+       
+        	
+	/*
+	 * 
+	 */
+	public function calcIndex($varDateValue, DataContainer $dc){
+	   
+	    if ($varDateValue != $dc->activeRecord->activeStart){
+	        $calendarStart = $this->Database->prepare("SELECT calendar_start FROM tl_countdowncalendar WHERE id=?")->execute($dc->activeRecord->pid)->fetchAssoc();
+                if (version_compare(phpversion(), '7.0.0') >= 0) {
+                    $offset = intdiv($varDateValue-$calendarStart['calendar_start'], 86400)+1;
+                   // System::log("PHP größer als oder gleich  7!",__METHOD__, TL_ERROR);
+                }
+                else {
+                    //System::log("PHP kleiner als 7!",__METHOD__, TL_ERROR);
+                    $offset = floor(($varDateValue-$calendarStart['calendar_start'])/ 86400)+1;
+                
+                }
+                if ($offset<=0) return false;
+         
+	        $this->Database->prepare("UPDATE tl_countdown_door SET door_index=".$offset." WHERE id=?")->execute($dc->activeRecord->id);
+	    }
+	    return $varDateValue;
+	    
+	}
+        /*
+	 * 
+	 */
+	public function calcIndexValue($varDateValue, DataContainer $dc){
+	   
+	   // if ($varDateValue != $dc->activeRecord->activeStart){
+	        $calendarStart = $this->Database->prepare("SELECT calendar_start FROM tl_countdowncalendar WHERE id=?")->execute($dc->activeRecord->pid)->fetchAssoc();
+                if (version_compare(phpversion(), '7.0.0') >= 0) {
+                    $offset = intdiv($varDateValue-$calendarStart['calendar_start'], 86400)+1;
+                   // System::log("PHP größer als oder gleich  7!",__METHOD__, TL_ERROR);
+                }
+                else {
+                    //System::log("PHP kleiner als 7!",__METHOD__, TL_ERROR);
+                    $offset = floor(($varDateValue-$calendarStart['calendar_start'])/ 86400)+1;
+                
+                }
+                if ($offset<=0) return false;
+         
+	        $this->Database->prepare("UPDATE tl_countdown_door SET door_index=".$offset." WHERE id=?")->execute($dc->activeRecord->id);
+	   // }
+	    return $offset;
+	    
+	}
+	
+	
         
         /*
          * This function is called in case the index/ date is updated because in that case the calculated alias needs to be changed too. 
@@ -375,13 +398,15 @@ class tl_countdown_door extends Backend{
         public function autoUpdateAlias($varValue, DataContainer $dc)
 	{
 		
-            $autoAlias = true;
+            $autoAlias = false;
             //get URL-Fragment
             $parentUrlFragment = $this->Database->prepare("Select urlFragment FROM tl_countdowncalendar WHERE id=?")->execute($dc->activeRecord->pid)->fetchAssoc();
             $urlFragment = $parentUrlFragment['urlFragment'];
             //create alias:
-            $strHelper = $urlFragment.'-'.$dc->activeRecord->door_index.'-'.$dc->activeRecord->door_title;
-            $varValue = StringUtil::generateAlias($strHelper);
+            $strIndexHelper = $this->calcIndexValue($dc->activeRecord->activeStart, $dc);
+            //$strHelper = $urlFragment.'-'.$dc->activeRecord->door_index.'-'.$dc->activeRecord->door_title;
+            $strHelper = $urlFragment.'-'.$strIndexHelper.'-'.$dc->activeRecord->door_title;
+           $varValue = StringUtil::generateAlias($strHelper);
 	    
             
             $objAlias = $this->Database->prepare("SELECT id FROM tl_countdown_door WHERE alias=?")->execute($varValue);
@@ -404,7 +429,7 @@ class tl_countdown_door extends Backend{
         
     public function listDoor($arrRow)
 	{
-		return '<div class="tl_content_left"> Tür Nummer '.  $arrRow['door_index'] .': ' . $arrRow['door_title'] . ' </div>';
+		return '<div class="tl_content_left"> Tür Nummer '.  $arrRow['door_index'] .': ' . $arrRow['door_title'] . ' <span style="color:#aeaeae;float:right;">['.date("d.m.Y",$arrRow['activeStart']).'] </span></div>';
 	}
 
 }
