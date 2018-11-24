@@ -1,6 +1,11 @@
 
 
 var popups = document.getElementsByClassName("secret");
+
+
+
+
+
 for (var i=0; i<popups.length; i++){
 	popups[i].addEventListener("click",showSecret,false);
         console.log("popups werden gezählt");
@@ -21,4 +26,10 @@ function closePopup(e){
 	console.log(e);
 	e.path[2].classList.toggle("hidden");
 	
+var doorsPerRow=6;
+
+var calContainer=document.getElementById('#adventcalendar');
+console.log('Höhe des Containers: '.calContainer.height);
+console.log('Breite des Containers: '.calContainer.width);
+
 }

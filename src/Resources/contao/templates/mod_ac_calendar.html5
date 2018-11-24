@@ -24,12 +24,22 @@
     <?php echo $this->secretsList;?>
 </div>
 <script type="text/javascript">
+var test=0;
+var doorsPerRowLg = <?php echo $this->doorsPerRowLG;?>;
+var doorsPerRowMd =<?php echo $this->doorsPerRowMD;?>;
+var doorsPerRowXs = <?php echo $this->doorsPerRowXS;?>;
+var breakPtMd = <?php echo $this->breakpointMD;?>;
+var breakPtXs = <?php echo $this->breakpointXS;?>;
 var popups = document.getElementsByClassName("secret");
 var overlay = document.getElementById("popup_overlay");
+var days = document.getElementsByClassName("day");
+var cntDoors= days.length;
 for (var i=0; i<popups.length; i++){
 	popups[i].addEventListener("click",showSecret,false);
 }
 
+window.addEventListener('resize',initDoors,false);
+window.addEventListener('load', initDoors, false);
 function showSecret(e) {
 	var dayClicked=e.target.getAttribute("data-daycount");
 	var secret = document.getElementById("secret_"+dayClicked);
@@ -42,4 +52,37 @@ function closePopup(e){
         e.target.parentElement.parentElement.classList.toggle("hidden");
         overlay.classList.toggle("hidden");
 }
+
+
+var calContainer=document.getElementById("adventcalendar");
+function initDoors(){
+    let actWidth=Math.floor(calContainer.offsetWidth*0.9);
+    let actHeight=Math.floor(calContainer.offsetHeight*0.9);
+    let brkPt =0;
+    let doorsPerRow=0;
+    let doorWidth=0;
+    let doorHeight=0;
+    let cntRows =0;
+    if (actWidth < breakPtXs){
+        doorsPerRow=doorsPerRowXs;
+        brkPt =breakPtXs;
+    }else if (actWidth<breakPtMd){
+        doorsPerRow=doorsPerRowMd;
+        brkPt = breakPtMd;
+    }else{
+        doorsPerRow=doorsPerRowLg;
+    }
+    cntRows = Math.ceil(cntDoors/doorsPerRow);
+    
+    doorWidth = actWidth/doorsPerRow;
+    doorHeight = actHeight/cntRows;
+    for (var y=0;y<days.length;y++){
+        days[y].style["width"]=doorWidth+"px";
+        days[y].style["lineHeight"]=doorHeight+"px";
+
+    }
+}
+
+
+
 </script>

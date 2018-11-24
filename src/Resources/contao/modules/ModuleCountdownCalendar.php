@@ -133,12 +133,28 @@ class ModuleCountdownCalendar extends ModuleCountdownDoor
                // $GLOBALS['TL_JAVASCRIPT'][]='/bundles/coffeincodecountdowncalendar/ac_script.js|static';
                         
                 //todo: add css
-               // $GLOBALS['TL_CSS'][]='/bundles/coffeincodecountdowncalendar/styles.css|static';
-           $sassVars="$cc_doorBgColor: #000";//". deserialize($this->Template->doorBgColor)[1].";";
-           $GLOBALS['TL_HEAD'][]= '<style type="text/css">'.$sassVars.'</style>';
+                //$GLOBALS['TL_CSS'][]='/bundles/coffeincodecountdowncalendar/styles.css|static';
+                $GLOBALS['TL_CSS'][]='/bundles/coffeincodecountdowncalendar/cc-styles.scss|static';
+                $sassVars="$cc_doorBgColor: #000";//". deserialize($this->Template->doorBgColor)[1].";";
+          // $GLOBALS['TL_HEAD'][]= '<style type="text/css">'.$sassVars.'</style>';
            //$GLOBALS['TL_HEAD'][] =. implode($GLOBALS['T4C_CSS']) . '</style>';
            
-                $GLOBALS['TL_CSS'][]='/bundles/coffeincodecountdowncalendar/sass-styles.scss';
+           
+            $cc_customCss=".door {background-color: #". deserialize($this->Template->doorBgColor)[0].";}";////opacity: ". deserialize($this->Template->doorBgColor)[1].";} "         
+          //          . "#popup_overlay{background-color: #".deserialize($this->Template->overlayColor[0])."; mix-blend-mode:".$this->Template->overlayType.";}";
+            /*
+                    . ""
+                    . ""
+                    . "";
+.day.active {
+  display: block;
+}"
+           
+      */     
+           // $GLOBALS['TL_HEAD'][]='<style type="text/css">'.$cc_customCss.'</style>';
+          //  $GLOBALS['TL_CSS'][]='/bundles/coffeincodecountdowncalendar/sass-styles.scss';
+                
+                
 	}
  
 }
