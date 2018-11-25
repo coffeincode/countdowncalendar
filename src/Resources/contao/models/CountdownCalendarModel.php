@@ -12,9 +12,7 @@
 
 namespace CoffeinCode\CountdownCalendar;
 
-class CountdownCalendarModel extends \Model {
-    
+class CountdownCalendarModel extends \Model
+{
     protected static $strTable = 'tl_countdowncalendar';
-    
-      
 }

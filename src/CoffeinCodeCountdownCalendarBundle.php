@@ -11,6 +11,4 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
  */
 class CoffeinCodeCountdownCalendarBundle extends Bundle
 {
-
 }
-

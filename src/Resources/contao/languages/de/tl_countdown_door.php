@@ -43,4 +43,3 @@ $GLOBALS['TL_LANG'][$strTable]['published'] = array('Eintrag veröffentlicht?','
 
 $GLOBALS['TL_LANG'][$strTable]['cssClass'][0] = 'CSS-ID/ -Klasse';
 $GLOBALS['TL_LANG'][$strTable]['cssClass'][1] = 'Geben Sie ggf. eine CSS-Klasse oder ID an';
-

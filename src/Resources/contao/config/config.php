@@ -13,20 +13,18 @@
 
 
 
- array_insert($GLOBALS['BE_MOD']['content'], 1, array
- (
-	'countdowncalendar' => array
-	( 
-	    'tables' 	=> array('tl_countdowncalendar', 'tl_countdown_door', 'tl_content'), 
-	    'table'       => array('TableWizard', 'importTable'),
-	    'list'        => array('ListWizard', 'importList')
-	)
+ array_insert($GLOBALS['BE_MOD']['content'], 1, array(
+    'countdowncalendar' => array(
+        'tables' 	=> array('tl_countdowncalendar', 'tl_countdown_door', 'tl_content'),
+        'table'       => array('TableWizard', 'importTable'),
+        'list'        => array('ListWizard', 'importList')
+    )
  ));
  
  
  
  
-$GLOBALS['FE_MOD']['countdowncalendar']=array (
+$GLOBALS['FE_MOD']['countdowncalendar']=array(
     'countdowncalendar'     => 'CoffeinCode\CountdownCalendar\ModuleCountdownCalendar',
     'countdown_door_reader'   => 'CoffeinCode\CountdownCalendar\ModuleCountdownDoorReader',
     
@@ -260,4 +258,3 @@ $GLOBALS['TL_MODELS']['tl_countdown_door']     ='CoffeinCode\CountdownCalendar\C
  * When rebuilding the search index URLs, Contao needs to know about these
  * keywords so it can handle them properly.
  */
-
