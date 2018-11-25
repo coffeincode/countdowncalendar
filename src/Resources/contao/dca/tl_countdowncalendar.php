@@ -129,7 +129,6 @@ $GLOBALS['TL_DCA'][$strTable] = array
                                                 alt, 
                                                 size,
                                                 addOverlay,
-                                                showGoneDates,
                                                 doorsPerRowLG,
                                                 doorsPerRowMD,
                                                 doorsPerRowXS,
@@ -230,7 +229,7 @@ $GLOBALS['TL_DCA'][$strTable] = array
 	        'inputType'               => 'select',
 	        'options'                 => array('10','9','8','7','6','5','4','3'),
 	        'reference'               => &$GLOBALS['TL_LANG']['MSC'],
-	        'eval'                    => array('rgxp'=>'natural', 'includeBlankOption'=>true, 'nospace'=>true, 'tl_class'=>'w50 clr '),
+	        'eval'                    => array('mandatory'=>'true', 'includeBlankOption'=>true, 'nospace'=>true, 'tl_class'=>'w50 clr '),
 	        'sql'                     => "varchar(64) NOT NULL default ''"
 	    ),
             'doorsPerRowMD' => array
@@ -240,7 +239,7 @@ $GLOBALS['TL_DCA'][$strTable] = array
 	        'inputType'               => 'select',
 	        'options'                 => array('10','9','8','7','6','5','4','3'),
 	        'reference'               => &$GLOBALS['TL_LANG']['MSC'],
-	        'eval'                    => array('includeBlankOption'=>true, 'tl_class'=>'w50 clr'),
+	        'eval'                    => array('mandatory'=>'true','includeBlankOption'=>true, 'tl_class'=>'w50 clr'),
 	        'sql'                     => "varchar(64) NOT NULL default ''"
 	    ),
             'doorsPerRowXS' => array
@@ -250,7 +249,7 @@ $GLOBALS['TL_DCA'][$strTable] = array
 	        'inputType'               => 'select',
 	        'options'                 => array('10','9','8','7','6','5','4','3','2','1'),
 	        'reference'               => &$GLOBALS['TL_LANG']['MSC'],
-	        'eval'                    => array('rgxp'=>'natural', 'includeBlankOption'=>true, 'nospace'=>true,  'tl_class'=>'w50 clr'),
+	        'eval'                    => array('mandatory'=>'true','includeBlankOption'=>true, 'nospace'=>true,  'tl_class'=>'w50 clr'),
 	        'sql'                     => "varchar(64) NOT NULL default ''"
 	    ),
             'breakpointMD' => array
@@ -305,7 +304,7 @@ $GLOBALS['TL_DCA'][$strTable] = array
 	        'exclude'                 => true,
 	        'inputType'               => 'text', 
                 'colorpicker'             => true,
-                'eval'                    => array('maxlength'=>6, 'multiple'=>true, 'size'=>2, 'colorpicker'=>true, 'isHexColor'=>true, 'decodeEntities'=>true, 'tl_class'=>'w50 wizard'),
+                'eval'                    => array('disabled'=>true,'maxlength'=>6, 'multiple'=>true, 'size'=>2, 'colorpicker'=>true, 'isHexColor'=>true, 'decodeEntities'=>true, 'tl_class'=>'w50 wizard'),
 	        'sql'                     => "varchar(64) NOT NULL default ''"
 	    ),
             'overlayType' => array
@@ -313,7 +312,7 @@ $GLOBALS['TL_DCA'][$strTable] = array
 	        'label'                   => &$GLOBALS['TL_LANG'][$strTable]['overlayType'],
 	        'exclude'                 => true,
 	        'inputType'               => 'select',
-                 'eval'                   => array('includeBlankOption'=>true, 'nospace'=>true, 'helpwizard'=>true, 'tl_class'=>'w50 clr'),
+                 'eval'                   => array('disabled'=>true,'includeBlankOption'=>true, 'nospace'=>true, 'helpwizard'=>true, 'tl_class'=>'w50 clr'),
 	        'options'                 => array('normal','multiply','screen', 'overlay', 'darken', 'lighten', 'color-dodge','color-burn', 'hard-light', 'soft-light', 'difference', 'exclusion', 'hue', 'saturation', 'color', 'luminosity'),
 	        'sql'                     => "char(1) NOT NULL default ''"
 	    ),
@@ -323,7 +322,7 @@ $GLOBALS['TL_DCA'][$strTable] = array
 	        'exclude'                 => true,
 	        'inputType'               => 'text', 
                 'colorpicker'             => true,
-                'eval'                    => array('maxlength'=>6, 'multiple'=>true, 'size'=>2, 'colorpicker'=>true, 'isHexColor'=>true, 'decodeEntities'=>true, 'tl_class'=>'w50 wizard'),
+                'eval'                    => array('disabled'=>true,'maxlength'=>6, 'multiple'=>true, 'size'=>2, 'colorpicker'=>true, 'isHexColor'=>true, 'decodeEntities'=>true, 'tl_class'=>'w50 wizard'),
 	        'sql'                     => "varchar(64) NOT NULL default ''"
 	    ),
             'doorFontColor' => array
@@ -332,7 +331,7 @@ $GLOBALS['TL_DCA'][$strTable] = array
 	        'exclude'                 => true,
 	        'inputType'               => 'text', 
                 'colorpicker'             => true,
-                'eval'                    => array('maxlength'=>6, 'multiple'=>true, 'size'=>2, 'colorpicker'=>true, 'isHexColor'=>true, 'decodeEntities'=>true, 'tl_class'=>'w50 wizard'),
+                'eval'                    => array('disabled'=>true,'maxlength'=>6, 'multiple'=>true, 'size'=>2, 'colorpicker'=>true, 'isHexColor'=>true, 'decodeEntities'=>true, 'tl_class'=>'w50 wizard'),
 	        'sql'                     => "varchar(64) NOT NULL default ''"
 	    ),
             'doorSecretBgColor' => array  //door zooming in background color
@@ -341,7 +340,7 @@ $GLOBALS['TL_DCA'][$strTable] = array
 	        'exclude'                 => true,
 	        'inputType'               => 'text', 
                 'colorpicker'             => true,
-                'eval'                    => array('maxlength'=>6, 'multiple'=>true, 'size'=>2, 'colorpicker'=>true, 'isHexColor'=>true, 'decodeEntities'=>true, 'tl_class'=>'w50 wizard'),
+                'eval'                    => array('disabled'=>true,'maxlength'=>6, 'multiple'=>true, 'size'=>2, 'colorpicker'=>true, 'isHexColor'=>true, 'decodeEntities'=>true, 'tl_class'=>'w50 wizard'),
 	        'sql'                     => "varchar(64) NOT NULL default ''"
 	    ),
             
@@ -351,7 +350,7 @@ $GLOBALS['TL_DCA'][$strTable] = array
 	        'exclude'                 => true,
 	        'inputType'               => 'text', 
                 'colorpicker'             => true,
-                'eval'                    => array('maxlength'=>6, 'multiple'=>true, 'size'=>2, 'colorpicker'=>true, 'isHexColor'=>true, 'decodeEntities'=>true, 'tl_class'=>'w50 wizard'),
+                'eval'                    => array('disabled'=>true,'maxlength'=>6, 'multiple'=>true, 'size'=>2, 'colorpicker'=>true, 'isHexColor'=>true, 'decodeEntities'=>true, 'tl_class'=>'w50 wizard'),
 	        'sql'                     => "varchar(64) NOT NULL default ''"
 	    ),
             'popSecretButtonBgColor' => array //door zooming in font color
@@ -360,7 +359,7 @@ $GLOBALS['TL_DCA'][$strTable] = array
 	        'exclude'                 => true,
 	        'inputType'               => 'text', 
                 'colorpicker'             => true,
-                'eval'                    => array('maxlength'=>6, 'multiple'=>true, 'size'=>2, 'colorpicker'=>true, 'isHexColor'=>true, 'decodeEntities'=>true, 'tl_class'=>'w50 wizard'),
+                'eval'                    => array('disabled'=>true,'maxlength'=>6, 'multiple'=>true, 'size'=>2, 'colorpicker'=>true, 'isHexColor'=>true, 'decodeEntities'=>true, 'tl_class'=>'w50 wizard'),
 	        'sql'                     => "varchar(64) NOT NULL default ''"
 	    ),
             'popSecretButtonFontColor' => array //door zooming in font color
@@ -369,7 +368,7 @@ $GLOBALS['TL_DCA'][$strTable] = array
 	        'exclude'                 => true,
 	        'inputType'               => 'text', 
                 'colorpicker'             => true,
-                'eval'                    => array('maxlength'=>6, 'multiple'=>true, 'size'=>2, 'colorpicker'=>true, 'isHexColor'=>true, 'decodeEntities'=>true, 'tl_class'=>'w50 wizard'),
+                'eval'                    => array('disabled'=>true,'maxlength'=>6, 'multiple'=>true, 'size'=>2, 'colorpicker'=>true, 'isHexColor'=>true, 'decodeEntities'=>true, 'tl_class'=>'w50 wizard'),
 	        'sql'                     => "varchar(64) NOT NULL default ''"
 	    ),
             
@@ -379,7 +378,7 @@ $GLOBALS['TL_DCA'][$strTable] = array
 	        'exclude'                 => true,
 	        'inputType'               => 'text', 
                 'colorpicker'             => true,
-                'eval'                    => array('maxlength'=>6, 'multiple'=>true, 'size'=>2, 'colorpicker'=>true, 'isHexColor'=>true, 'decodeEntities'=>true, 'tl_class'=>'w50 wizard'),
+                'eval'                    => array('disabled'=>true,'maxlength'=>6, 'multiple'=>true, 'size'=>2, 'colorpicker'=>true, 'isHexColor'=>true, 'decodeEntities'=>true, 'tl_class'=>'w50 wizard'),
 	        'sql'                     => "varchar(64) NOT NULL default ''"
 	    ),
               'popSecretFontColor' => array //door zooming in font color
@@ -388,7 +387,7 @@ $GLOBALS['TL_DCA'][$strTable] = array
 	        'exclude'                 => true,
 	        'inputType'               => 'text', 
                 'colorpicker'             => true,
-                'eval'                    => array('maxlength'=>6, 'multiple'=>true, 'size'=>2, 'colorpicker'=>true, 'isHexColor'=>true, 'decodeEntities'=>true, 'tl_class'=>'w50 wizard'),
+                'eval'                    => array('disabled'=>true,'maxlength'=>6, 'multiple'=>true, 'size'=>2, 'colorpicker'=>true, 'isHexColor'=>true, 'decodeEntities'=>true, 'tl_class'=>'w50 wizard'),
 	        'sql'                     => "varchar(64) NOT NULL default ''"
 	    ),
 	    'svgSprites' => array

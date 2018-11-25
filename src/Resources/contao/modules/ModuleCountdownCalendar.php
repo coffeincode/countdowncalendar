@@ -79,8 +79,9 @@ class ModuleCountdownCalendar extends ModuleCountdownDoor
             
             $arrObjCalendar = CountdownCalendarModel::findByIdOrAlias($this->ac_calendar);
            
-            $this->Template->debug= $arrObjCalendar->acDebug;
+           
             $debug=$arrObjCalendar->acDebug;
+            $this->Template->debug=$debug;
             $this->ac_jumpTo = $arrObjCalendar->jumpTo;
             $this->Template->setData($arrObjCalendar->row());
             $this->Template->message=NULL;
@@ -90,7 +91,7 @@ class ModuleCountdownCalendar extends ModuleCountdownDoor
             $acDoorList = $this->parseAllDoors($parsingDate,$this->ac_details_template, $arrObjSecrets); 
            
             //parse all secrets:
-            $arrSecretsList = $this->parseAllSecrets($parsingDate,$this->ac_jumpTo,'default_secret', $arrObj);
+            $arrSecretsList = $this->parseAllSecrets($parsingDate,$this->ac_jumpTo,'default_secret', $debug,$arrObj);
                 
            
             if ($acDoorList){
@@ -105,56 +106,53 @@ class ModuleCountdownCalendar extends ModuleCountdownDoor
              }
              
             //compile and prepare calendar:
-             if ($arrObjCalendar->singleSRC != '')
-		{
-                        $arrCal = $arrObjCalendar->row();
-			$objImgModel = \FilesModel::findByUuid($arrObjCalendar->singleSRC);
-			if ($objImgModel === null)
-			{
-				if (!\Validator::isUuid($arrObjCalendar->singleSRC))
-				{
-					$this->Template->text = '<p class="error">'.$GLOBALS['TL_LANG']['ERR']['version2format'].'</p>';
-				}
-			}
-			elseif (is_file(TL_ROOT . '/' . $objImgModel->path))
-			{
-			
-				$arrCal['singleSRC'] = $objImgModel->path;
-                                
-				$this->addImageToTemplate($this->Template, $arrCal);        
-			}
-		}
+             if ($arrObjCalendar->singleSRC != ''){
+                $arrCal = $arrObjCalendar->row();
+                $objImgModel = \FilesModel::findByUuid($arrObjCalendar->singleSRC);
+                if ($objImgModel === null)
+                {
+                        if (!\Validator::isUuid($arrObjCalendar->singleSRC))
+                        {
+                                $this->Template->text = '<p class="error">'.$GLOBALS['TL_LANG']['ERR']['version2format'].'</p>';
+                        }
+                }
+                elseif (is_file(TL_ROOT . '/' . $objImgModel->path))
+                {
+
+                        $arrCal['singleSRC'] = $objImgModel->path;
+
+                        $this->addImageToTemplate($this->Template, $arrCal);        
+                }
+            }
                 
-                //todo: deserialize colors and dump them to the global css
-                //todo: catch empty calendars
+            //todo: deserialize colors and dump them to the global scss-variables-file
                 
+            //$doorColor='';    
+            $doorFillColor='';
+            $doorFontColor='';
+            $doorSecretBgColor='';
                 
-                //todo: add javascript
-               // $GLOBALS['TL_JAVASCRIPT'][]='/bundles/coffeincodecountdowncalendar/ac_script.js|static';
-                        
-                //todo: add css
-                //$GLOBALS['TL_CSS'][]='/bundles/coffeincodecountdowncalendar/styles.css|static';
+            $doorColor = deserialize($this->Template->doorBgColor);    
+            $this->Template->doorCol=$doorColor[0];
+            $this->Template->doorOpacity=$doorColor[1];
+                //todo: catch empty calendars      
+                //todo: add javascript-template
+            $sassVars[]=array('')  ;  
+                
                 $GLOBALS['TL_CSS'][]='/bundles/coffeincodecountdowncalendar/cc-styles.scss|static';
-                $sassVars="$cc_doorBgColor: #000";//". deserialize($this->Template->doorBgColor)[1].";";
-          // $GLOBALS['TL_HEAD'][]= '<style type="text/css">'.$sassVars.'</style>';
-           //$GLOBALS['TL_HEAD'][] =. implode($GLOBALS['T4C_CSS']) . '</style>';
-           
-           
-            $cc_customCss=".door {background-color: #". deserialize($this->Template->doorBgColor)[0].";}";////opacity: ". deserialize($this->Template->doorBgColor)[1].";} "         
-          //          . "#popup_overlay{background-color: #".deserialize($this->Template->overlayColor[0])."; mix-blend-mode:".$this->Template->overlayType.";}";
-            /*
-                    . ""
-                    . ""
-                    . "";
-.day.active {
-  display: block;
-}"
-           
-      */     
-           // $GLOBALS['TL_HEAD'][]='<style type="text/css">'.$cc_customCss.'</style>';
-          //  $GLOBALS['TL_CSS'][]='/bundles/coffeincodecountdowncalendar/sass-styles.scss';
+             //   $sassVars="$cc_doorBgColor: #000";//". deserialize($this->Template->doorBgColor)[1].";";
                 
                 
 	}
+        
+        /* 
+         * @var $arrVariables This is an array of VariableNames and associated values given by the backend-user
+         * 
+         * The variables are written to a file located in the public folder, the file is overwritten every time the function is called
+         * 
+         */
+        protected function writeSassVars($arrVariables, $strFilename){
+            
+        }
  
 }

@@ -1,8 +1,8 @@
 <div class="<?php echo $this->class ?> block"<?php echo $this->cssID ?><?php if ($this->style): ?> style="<?= $this->style ?>"<?php endif; ?>>
    
+    <?php if ($this->acDebug):?>  <H1> Achtung, debug-modus ist eingeschaltet!!</h1><?php endif;?>
     <?php if ($this->title): ?> <h2>
-        <?php echo $this->title;?></h2><?php endif;?>
-    <?php if ($this->debug):?>  <H1> Achtung, debug-modus ist eingeschaltet!!</h1><?php endif;?>
+    <?php echo $this->title;?></h2><?php endif;?>    
 
     <div class="ac_container">
          <div id="popup_overlay" class="hidden"></div> 
@@ -11,7 +11,7 @@
              <?php $this->insert('picture_default', $this->picture); ?>
             
         </div>
-        <div id="adventcalendar" class="ac_doors"style="position:absolute;top:0;display:flex;flex-wrap:wrap;">
+        <div id="countdowncalendar" class="ac_doors"style="position:absolute;top:0;display:flex;flex-wrap:wrap;">
             <div class="ac_doors_inner_wrapper">
           <?php echo $this->doorsList; ?>
         </div>
@@ -19,10 +19,11 @@
         </div>
     </div>
 </div>
-
+<?php dump($this);?>
 <div id="cdc_secrets">
     <?php echo $this->secretsList;?>
 </div>
+
 <script type="text/javascript">
 var test=0;
 var doorsPerRowLg = <?php echo $this->doorsPerRowLG;?>;
@@ -54,7 +55,7 @@ function closePopup(e){
 }
 
 
-var calContainer=document.getElementById("adventcalendar");
+var calContainer=document.getElementById("countdowncalendar");
 function initDoors(){
     let actWidth=Math.floor(calContainer.offsetWidth*0.9);
     let actHeight=Math.floor(calContainer.offsetHeight*0.9);
@@ -79,10 +80,6 @@ function initDoors(){
     for (var y=0;y<days.length;y++){
         days[y].style["width"]=doorWidth+"px";
         days[y].style["lineHeight"]=doorHeight+"px";
-
     }
 }
-
-
-
 </script>

@@ -32,6 +32,8 @@ Die Bildgröße sollte mit exakten Maßen arbeiten und mindestens 2 Breakpoints 
 
 ## Anlegen neuer Kalender-Einträge
 
+Die Kalender-Tage werden ähnlich wie Nachrichten eines Nachrichtenkanals angelegt, jeder Kalendertag hat ein Teaserfeld. Die Detail-Infos für die Leserseite sind als herkömmliche Content-Elements aus Contao auswählbar. 
+Es empfiehlt sich, erst alle Tage des Kalenderzeitraums anzulegen, damit keiner vergessen wird. Danach kann die Ausgabereihenfolge für das Frontend durch Umsortieren der Liste durchgeführt werden. 
 
 
 ## Testen und Debuggen 
@@ -39,14 +41,8 @@ Die Bildgröße sollte mit exakten Maßen arbeiten und mindestens 2 Breakpoints 
 Der Kalender bringt einen Debug-Modus mit sich, um das Verhalten des Kalenders durchzutesten bevor die Kalenderdaten erreicht werden. 
 Sobald der Kalender auf debug gesetzt wird, muss ein Datum angegeben werden, das ab sofort für alle Kalender-Anfragen im Frontend verwendet werden soll. So kann Anfang November getestet werden, ob die Türen am 22.12. alle korrekt öffnen und die letzten beiden wie erwartet verschlossen bleiben. 
 
-Dies kann gemeinsam mit der Frontend-Vorschau in der Einstellung "uveröffentlichte Elemente anzeigen" verwendet werden. 
-
-
-# Bekannte Probleme
-
-*  derzeit gibt es einen Fehler im automatischen Erzeugen der Aliase - je nach Durchlauf wird die ID des DB-Eintrages noch angefügt, was unschön ist, aber die Funktionalität an sich nicht beeinträchtigt
-*  Derzeit ist es noch möglich, den Index eines Tages manuell zu verändern, was zu unerwartetem Verhalten im Frontend führen kann. 
-*  
+Dies kann gemeinsam mit der Frontend-Vorschau in der Einstellung "uveröffentlichte Elemente anzeigen" verwendet werden.
+Da der Debug-Modus die Frontend-Ausgabe für alle Aufrufe verändert, nicht nur für die Frontend-Vorschau, sollte er nachdem alles eingestellt wurde auch unbedingt wieder ausgeschaltet werden.
 
 
 

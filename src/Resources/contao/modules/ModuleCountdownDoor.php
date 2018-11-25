@@ -37,17 +37,20 @@ abstract class ModuleCountdownDoor extends \Module
          * 
          * 
          */  
-        protected function parseDoor ($objDoor, $strTimestamp, $strTemplate, $objReaderPage=null ){
+        protected function parseDoor ($objDoor, $strTimestamp, $strTemplate, $debug=false, $objReaderPage=null ){
             $objTemplate = new \FrontendTemplate($strTemplate);
             $objTemplate->setData($objDoor->row());
             $objTemplate->locked = true; //check this! A door is locked if the actual date of parsing is smaller than the active-timestamp of the door to be parsed. 
             $objTemplate->class = (($objDoor->cssClass != '') ? ' ' . $objDoor->cssClass : '') . $strClass;
             $objDoor->activeStart <= $strTimestamp ? $objTemplate->locked=false:$objTemplate->locked=true;
-            
+            $objTemplate->debug=$debug;
             if($objReaderPage){
-                if(! $objTemplate->locked){
-                    //todo:
-                    $strLink= $this->makeLink($objReaderPage) . $objDoor->alias .'.html'; 
+                if(! $objTemplate->locked){          
+                    $objPage = \Contao\PageModel::findByPk($objReaderPage);
+                    $strLink= ampersand($objPage->getFrontendUrl((\Config::get('useAutoItem') ? '/' : '/items/') . ($objDoor->alias ?: $objDoor->id)));
+                    if ($debug){
+                       $strLink.="?debug=true";
+                    }  
                     $objTemplate->link =$strLink;
                     $objTemplate->readerID = $objReaderPage->id;             
                 }
@@ -89,35 +92,25 @@ abstract class ModuleCountdownDoor extends \Module
      
       
      protected function parseAllDoors ( $strTimestamp, $intTemplate, $arrDoors=null){    
-        // $objTemplate = new \FrontendTemplate($this->ac_details_template);
-         //$objTemplate =new \FrontendTemplate();
-         if ($arrDoors === null){return null;}
-         else {//das Array ist schonmal nicht leer
-             $arrHelperDoors='';
-             
-             //zuerst die türen         
+        if ($arrDoors === null){return null;}
+        else {
+             $arrHelperDoors='';   
              while ($arrDoors->next()){
                  $arrHelperDoors .= $this->parseDoor($arrDoors,$strTimestamp, $intTemplate );
-                 
              }
-                          
              return $arrHelperDoors;
          }
      }   
         
    
-     protected function parseAllSecrets( $strTimestamp, $objReaderPage, $intTemplate, $arrDoors=null){    
+     protected function parseAllSecrets( $strTimestamp, $objReaderPage, $intTemplate, $debug,$arrDoors=null ){    
         
          if ($arrDoors === null){return null;}
-         else {//das Array ist schonmal nicht leer
-          
+         else {
              $arrHelperSecrets='';
-            
-             //zuerst die türen         
              while ($arrDoors->next()){
-               $arrHelperSecrets.= $this->parseDoor($arrDoors,$strTimestamp, 'default_secret',$objReaderPage);
+               $arrHelperSecrets.= $this->parseDoor($arrDoors,$strTimestamp, 'default_secret',true,$objReaderPage);
              }
-             
              return $arrHelperSecrets;
          }
      }   
@@ -130,11 +123,7 @@ abstract class ModuleCountdownDoor extends \Module
      * @param $intId
      * @return string
      * 
-     * @todo Auto-Item und id-statt-alias hier berücksichtigen?
-     * In ModuleNews.php in Zeile 372:
-     * self::$arrUrlCache[$strCacheKey] = ampersand($objPage->getFrontendUrl(((\Config::get('useAutoItem') && !\Config::get('disableAlias')) ? '/' : '/items/') . ((!\Config::get('disableAlias') && $objItem->alias != '') ? $objItem->alias : $objItem->id)));
-         * getFrontendUrl?! Wo ist das denn definiert?! 
-     */
+     *      */
     private function makeLink($intId)
     {
         //global $objPage;

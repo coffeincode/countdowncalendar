@@ -56,15 +56,15 @@ $GLOBALS['TL_LANG'][$strTable]['singleSRC']= array('Bilddatei',
 $GLOBALS['TL_LANG'][$strTable]['size']= array('Bildgröße',
                                                 'Wählen Sie die Bildgröße. Diese sollte responsiv sein, da sie die Container-Abmaße des Kalenders definiert.');
 
-$GLOBALS['TL_LANG'][$strTable]['addOverlay']= array('Bild überlagern?',
+$GLOBALS['TL_LANG'][$strTable]['addOverlay']= array('Bild überlagern? (noch nicht implementiert!)',
                                                 'Soll das Bild mit einer (transparenten) Farbe überlagert werden?');
 
 
 
 $GLOBALS['TL_LANG'][$strTable]['overlayColor']= array('Farbe & Transparenz für die Überlagerung',
-                                                'Wählen Sie Farbe & Transparenz, mit der das Bild überlagert werden soll.');
+                                                '(noch nicht implementiert!)Wählen Sie Farbe & Transparenz, mit der das Bild überlagert werden soll.');
 $GLOBALS['TL_LANG'][$strTable]['overlayType']= array('Überlagerungstyp',
-                                                'Wählen Sie die Art der Überlagerung, die Optionen entsprechen dem CSS-Attribut mix-blend-mode.');
+                                                '(noch nicht implementiert!)Wählen Sie die Art der Überlagerung, die Optionen entsprechen dem CSS-Attribut mix-blend-mode.');
 $GLOBALS['TL_LANG'][$strTable]['showGoneDates']= array('Vergangene Tage deaktivieren? (NICHT IMPLEMENTERT)',
                                                 'Diese Funktion ist noch nicht aktivierbar.');
 $GLOBALS['TL_LANG'][$strTable]['doorsPerRowLG']= array('Anzahl der Türen pro Reihe: Large devices',
