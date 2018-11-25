@@ -19,7 +19,6 @@
         </div>
     </div>
 </div>
-<?php dump($this);?>
 <div id="cdc_secrets">
     <?php echo $this->secretsList;?>
 </div>
