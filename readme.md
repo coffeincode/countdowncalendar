@@ -27,8 +27,7 @@ Die Farb-Attribute sind noch nicht funktional, derzeit muss entweder per zusätz
 
 Der Kalender wurde so angelegt, dass ein Bild im Hintergrund das responsive Verhalten des Containers regelt. Es ist empfehlenswert, eine gesonderte Bildgröße anzulegen, mit der dieses Verhalten gesteuert wird. So kann sichergestellt
 werden, dass der Kalendercontainer auch auf kleinen Displays genug Höhe zur Verfügung stellt, um die Türen ohne Überlagerungen neben- und untereinander darzustellen. 
-Die Bildgröße sollte mit exakten Maßen arbeiten und mindestens 2 Breakpoints verarbeiten. Bei xs-Displays ist es empfehlenswert, das Kalenderbild ggf. vom Querformat auf Hochformat wechseln zu lassen 
-- mit responsive images in Contao ja kein Problem. 
+Die Bildgröße sollte mit exakten Maßen arbeiten und mindestens 2 Breakpoints verarbeiten. Bei xs-Displays ist es empfehlenswert, das Kalenderbild ggf. vom Querformat auf Hochformat wechseln zu lassen, das ist mit responsive images in Contao ja kein Problem. 
 
 ## Anlegen neuer Kalender-Einträge
 

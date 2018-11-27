@@ -23,6 +23,7 @@ $GLOBALS['TL_DCA'][$strTable] = array(
             'ctable'                      => array('tl_countdown_door'),
             'switchToEdit'                => true,
         'enableVersioning'            => true,
+        'onsubmit_callback'             => array('tl_countdowncalendar', 'writeScssVariables'),
         'sql' => array(
             'keys' => array(
                 'id' => 'primary'
@@ -283,7 +284,7 @@ $GLOBALS['TL_DCA'][$strTable] = array(
             'exclude'                 => true,
             'inputType'               => 'text',
                 'colorpicker'             => true,
-                'eval'                    => array('disabled'=>true,'maxlength'=>6, 'multiple'=>true, 'size'=>2, 'colorpicker'=>true, 'isHexColor'=>true, 'decodeEntities'=>true, 'tl_class'=>'w50 wizard'),
+                'eval'                    => array('maxlength'=>6, 'multiple'=>true, 'size'=>2, 'colorpicker'=>true, 'isHexColor'=>true, 'decodeEntities'=>true, 'tl_class'=>'w50 wizard'),
             'sql'                     => "varchar(64) NOT NULL default ''"
         ),
             'doorFontColor' => array(
@@ -341,7 +342,7 @@ $GLOBALS['TL_DCA'][$strTable] = array(
                 'eval'                    => array('disabled'=>true,'maxlength'=>6, 'multiple'=>true, 'size'=>2, 'colorpicker'=>true, 'isHexColor'=>true, 'decodeEntities'=>true, 'tl_class'=>'w50 wizard'),
             'sql'                     => "varchar(64) NOT NULL default ''"
         ),
-              'popSecretFontColor' => array //door zooming in font color
+        'popSecretFontColor' => array //door zooming in font color
         (
             'label'                   => &$GLOBALS['TL_LANG'][$strTable]['popSecretFontColor'],
             'exclude'                 => true,
@@ -479,4 +480,9 @@ class tl_countdowncalendar extends Backend
         $this->Database->prepare("UPDATE tl_countdowncalendar SET tstamp=". time() .", published='" . ($blnPublished ? '' : '1') . "' WHERE id=?")->execute($intId);
         $this->createNewVersion('tl_countdowncalendar', $intId);
     }
+    
+    public function writeScssVariables($dc){
+        System::log("jetzt wird gespeichert:", __METHOD__, TL_GENERAL);
+    }
+    
 }
