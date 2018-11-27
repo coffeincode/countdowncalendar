@@ -120,7 +120,7 @@ $GLOBALS['TL_DCA'][$strTable] = array(
             'label'                   => &$GLOBALS['TL_LANG']['tl_countdown_door']['door_index'],
             'exclude'                 => true,
             'inputType'               => 'text',
-                'eval'                    => array('mandatory'=>true, 'disabled'=>true,   'doNotCopy'=>true, 'maxlength'=>255, 'tl_class'=>'w50'),
+                'eval'                    => array('disabled'=>true,   'doNotCopy'=>true, 'maxlength'=>255, 'tl_class'=>'w50'),
             'sql'                     => "int(10) unsigned NOT NULL default '0'"
         ),
         'door_title' => array(

@@ -23,7 +23,7 @@ $GLOBALS['TL_DCA'][$strTable] = array(
             'ctable'                      => array('tl_countdown_door'),
             'switchToEdit'                => true,
         'enableVersioning'            => true,
-        'onsubmit_callback'             => array('tl_countdowncalendar', 'writeScssVariables'),
+        'onsubmit_callback'             => array(array('tl_countdowncalendar', 'writeScssVariables')),
         'sql' => array(
             'keys' => array(
                 'id' => 'primary'
@@ -481,8 +481,8 @@ class tl_countdowncalendar extends Backend
         $this->createNewVersion('tl_countdowncalendar', $intId);
     }
     
-    public function writeScssVariables($dc){
-        System::log("jetzt wird gespeichert:", __METHOD__, TL_GENERAL);
+    public function writeScssVariables(DataContainer $dc){
+        System::log("jetzt wird gespeichert:". $dc->activeRecord->doorSecretBgColor, __METHOD__, TL_GENERAL);
     }
     
 }
