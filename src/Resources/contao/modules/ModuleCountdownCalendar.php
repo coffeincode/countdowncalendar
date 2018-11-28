@@ -63,8 +63,10 @@ class ModuleCountdownCalendar extends ModuleCountdownDoor
     protected function compile()
     {
         $t = $this->strChildTable;
-        $arrColumns = array("$t.pid", "$t.published");
-        $arrValues = array("$this->ac_calendar", "1");
+        
+        
+        $arrColumns = array($t.".pid=?", $t.".published=?");
+        $arrValues = array($this->ac_calendar, "1");
         $options = array('order'=>'sorting');
         $arrObj= CountdownDoorModel::findBy($arrColumns, $arrValues, $options);
         $arrObjSecrets= CountdownDoorModel::findBy($arrColumns, $arrValues, $options);
