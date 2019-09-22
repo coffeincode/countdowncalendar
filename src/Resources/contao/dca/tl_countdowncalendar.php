@@ -333,7 +333,7 @@ $GLOBALS['TL_DCA'][$strTable] = array(
             'sql'                     => "varchar(64) NOT NULL default ''"
         ),
             
-            'popSecretBgColor' => array //door zooming in font color
+        'popSecretBgColor' => array //door zooming in font color
         (
             'label'                   => &$GLOBALS['TL_LANG'][$strTable]['popSecretBgColor'],
             'exclude'                 => true,

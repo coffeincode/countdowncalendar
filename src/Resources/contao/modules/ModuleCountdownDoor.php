@@ -25,7 +25,10 @@ abstract class ModuleCountdownDoor extends \Module
      */
     protected $strAcCeTemplate;
     protected $idReaderPage;
-        
+
+
+    //TODO:
+    //There is a bug at the moment causing EVERY door to be called in debug-mode. Fix this!
     /**
      * Function
      * Parses a single Calendar Door:
@@ -38,6 +41,7 @@ abstract class ModuleCountdownDoor extends \Module
      */
     protected function parseDoor($objDoor, $strTimestamp, $strTemplate, $debug=false, $objReaderPage=null)
     {
+
         $objTemplate = new \FrontendTemplate($strTemplate);
         $objTemplate->setData($objDoor->row());
         $objTemplate->locked = true; //check this! A door is locked if the actual date of parsing is smaller than the active-timestamp of the door to be parsed.
@@ -48,7 +52,8 @@ abstract class ModuleCountdownDoor extends \Module
             if (! $objTemplate->locked) {
                 $objPage = \Contao\PageModel::findByPk($objReaderPage);
                 $strLink= ampersand($objPage->getFrontendUrl((\Config::get('useAutoItem') ? '/' : '/items/') . ($objDoor->alias ?: $objDoor->id)));
-                if ($debug) {
+
+                if ($debug===true) {
                     $strLink.="?debug=true";
                 }
                 $objTemplate->link =$strLink;
@@ -91,6 +96,7 @@ abstract class ModuleCountdownDoor extends \Module
       
     protected function parseAllDoors($strTimestamp, $intTemplate, $arrDoors=null)
     {
+        \Contao\System::log("ich rufe parseAllDoors auf... ", __METHOD__, TL_ERROR);
         if ($arrDoors === null) {
             return null;
         } else {
@@ -105,12 +111,13 @@ abstract class ModuleCountdownDoor extends \Module
    
     protected function parseAllSecrets($strTimestamp, $objReaderPage, $intTemplate, $debug, $arrDoors=null)
     {
+        \Contao\System::log("ich rufe parseAllSecrets auf, debug lautet ". $debug, __METHOD__, TL_ERROR);
         if ($arrDoors === null) {
             return null;
         } else {
             $arrHelperSecrets='';
             while ($arrDoors->next()) {
-                $arrHelperSecrets.= $this->parseDoor($arrDoors, $strTimestamp, 'default_secret', true, $objReaderPage);
+                $arrHelperSecrets.= $this->parseDoor($arrDoors, $strTimestamp, 'default_secret', $debug, $objReaderPage);
             }
             return $arrHelperSecrets;
         }

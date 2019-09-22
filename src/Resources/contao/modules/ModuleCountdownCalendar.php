@@ -74,8 +74,7 @@ class ModuleCountdownCalendar extends ModuleCountdownDoor
         $this->strModTemplate = $this->ac_template;
             
         $arrObjCalendar = CountdownCalendarModel::findByIdOrAlias($this->ac_calendar);
-           
-           
+
         $debug=$arrObjCalendar->acDebug;
         $this->Template->debug=$debug;
         $this->ac_jumpTo = $arrObjCalendar->jumpTo;
